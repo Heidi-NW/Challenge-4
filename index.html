@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="styles.css" rel="stylesheet">
+  <script defer src="script.js"></script>
+  <title>Quiz App</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Javascript Quiz</h1>
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+      <p>Timer : <span class="timer">30</span></p>
+    </div>
+    <div class="over">
+      <h2>Game Over</h2>
+      <p>Your Score is <span id="score"></span></p>
+      <form action="">
+        <label for="Initial">Initial</label>
+        <input type="text" name="Initial" id="Initial" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="controls">
+      <button id="start-btn" class="start-btn btn">Start</button>
+      <button id="next-btn" class="next-btn btn hide">Next</button>
+    </div>
+  </div>
+</body>
+
+</html>
