@@ -118,7 +118,7 @@ document.querySelector('form').addEventListener("submit", (e) => {
   startButton.classList.remove('hide');
   document.querySelector('.over').classList.add('hide');
   document.querySelector('#showscore').classList.remove('hide');
-  document.querySelector('#showscore').innerText = name + ' and your high score: ' + finalScore + ' has been saved'
+  document.querySelector('#showscore').innerText = name + ' your high score: ' + finalScore + ' has been saved'
 })
 
 const questions = [
