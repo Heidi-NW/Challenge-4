@@ -98,3 +98,8 @@ color:#008000
   font-weight: 300;
   text-align: center;
 }
+
+#showscore {
+  text-align: center;
+  font-size: 25px;;
+}

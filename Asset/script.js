@@ -21,15 +21,16 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
-  clearInterval(timerinterval);
+  timer = 30;
+  score = 0;
+  document.querySelector(".timer").innerText = timer;
   timerinterval = setInterval(() => {
     timer--;
     document.querySelector(".timer").innerText = timer;
-    if (timer <= 1) {
+    if (timer < 0) {
       clearInterval(timerinterval);
       resetState();
       endGame();
-      timer = 0;
     }
   }, 1000);
 
@@ -42,12 +43,11 @@ function startGame() {
 }
 
 function endGame() {
+  resetState();
   startButton.classList.remove('hide');
   questionContainerElement.classList.add('hide');
-  document.querySelector(".timer").innerText = 60;
   questionElement.innerText = "";
-  document.querySelector("#score").innerText = timer;
-  timer = 30;
+  document.querySelector("#score").innerText = score;
   finishElement.classList.remove('hide');
 }
 
@@ -73,6 +73,7 @@ function showQuestion(question) {
 function resetState() {
   clearStatusClass(document.body);
   nextButton.classList.add('hide');
+  document.querySelector('#showscore').classList.add('hide');
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
@@ -82,18 +83,17 @@ function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct, true);
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct);
-  })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide');
   } else {
     startButton.innerText = 'Restart';
     startButton.classList.remove('hide');
+    endGame();
   }
 }
 
 function setStatusClass(element, correct, ifCheck) {
+  console.log(element);
   clearStatusClass(element);
   if (correct) {
     element.classList.add('correct');
@@ -109,13 +109,16 @@ function clearStatusClass(element) {
   element.classList.remove('wrong');
 }
 
-document.querySelector('form').addEventListener("submit", () => {
+document.querySelector('form').addEventListener("submit", (e) => {
+  e.preventDefault();
   let name = document.querySelector('input').value;
   let finalScore = document.querySelector('#score').innerText;
-  initials.push({name: name, score: finalScore});
+  initials.push({ name: name, score: finalScore });
   localStorage.setItem('initials', JSON.stringify(initials));
   startButton.classList.remove('hide');
   document.querySelector('.over').classList.add('hide');
+  document.querySelector('#showscore').classList.remove('hide');
+  document.querySelector('#showscore').innerText = name + ' and your high score: ' + finalScore + ' has been saved'
 })
 
 const questions = [
