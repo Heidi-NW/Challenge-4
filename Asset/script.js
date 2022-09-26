@@ -99,7 +99,7 @@ function setStatusClass(element, correct, ifCheck) {
     element.classList.add('correct');
     score++;
   } else {
-    if (ifCheck != undefined && ifCheck == true) timer -= 5;
+    if (ifCheck == true) timer -= 5;
     element.classList.add('wrong');
   }
 }
